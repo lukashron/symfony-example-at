@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="display-1 pt-5 pb-5">Posts</h1>
+
+        {% if posts|length == 0 %}
+            <div class="alert alert-warning" role="alert">
+                No posts found.
+            </div>
+        {% else %}
+            {% for post in posts %}
+                <article class="pt-2 pb-2">
+                    <h2>{{ post.title }}</h2>
+                    <small class="text-muted pb-3">ID: {{ post.id }} | External ID:  {{ post.externalId }}</small>
+                    <p>
+                        {% if post.body|length > 80 %}
+                            {{ post.body|slice(0, 80) }}...
+                        {% else %}
+                            {{ post.body }}
+                        {% endif %}
+                    </p>
+                    <a class="btn btn-outline-primary" href="{{ path('app_post_show', { 'id': post.id }) }}">Read more</a>
+                </article>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="container pt-5 pb-5">
+        {% if paginator.shopPagination %}
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if paginator.showPreviousButton %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ path('app_homepage', { page: paginator.previousPage }) }}">Previous</a>
+                        </li>
+                    {% endif %}
+
+                    {% for i in 1..paginator.totalPages %}
+                        <li class="page-item{{ paginator.currentPage == i ? ' active' : '' }}">
+                            <a class="page-link" href="{{ path('app_homepage', { page: i }) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if paginator.showNextButton %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ path('app_homepage', { page: paginator.nextPage }) }}">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+{% endblock %}

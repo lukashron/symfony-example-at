@@ -1,0 +1,41 @@
+services:
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+      - web
+    volumes:
+      - .:/var/www/html:ro
+      - ./.docker/nginx/conf.d/site.conf:/etc/nginx/conf.d/site.conf:ro
+      - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./.docker/nginx/proxy.conf:/etc/nginx/proxy.conf:ro
+    links:
+      - web
+      - mysql
+
+  web:
+    image: lukashron/php-app:8.3-fpm
+    depends_on:
+      - mysql
+    volumes:
+      - .:/var/www/html:rw
+      - ./.docker/php/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini:ro
+    links:
+      - mysql
+
+  mysql:
+    # platform: linux/x86_64 # For Apple M1
+    image: mysql:8.0
+    ports:
+      - ${MYSQL_PORT}:3306
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./.docker/mysql/default.cnf:/etc/mysql/conf.d/default.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <article>
+            <h1 class="display-1 pt-5 pb-5">{{ post.title }}</h1>
+            <p>{{ post.body }}</p>
+        </article>
+    </div>
+
+    <div class="container text-end text-muted fs-6">
+        Author: {{ author.name }} | {{ author.email }} | {{ author.website }}
+    </div>
+
+    {% if comments|length > 0 %}
+        <div class="container pt-5 pb-5">
+            <h2 class="display-1 pt-5 pb-5">Comments</h2>
+            <div class="list-group">
+                {% for comment in comments %}
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ comment.name }}</h5>
+                        </div>
+                        <small>{{ comment.email }}</small>
+                        <p class="mb-1">{{ comment.body }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="container text-center pt-5 pb-5">
+        <a class="btn btn-primary" href="{{ path('app_homepage') }}">Back to homepage</a>
+    </div>
+{% endblock %}
