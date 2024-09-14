@@ -23,7 +23,7 @@ class HomepageController extends AbstractController
     {
         $countPosts = $postFacade->countForPublicList();
 
-        $paginator = new Paginator(25, $countPosts, $page);
+        $paginator = new Paginator($this->getParameter('paginator.items_per_page'), $countPosts, $page);
 
         return $this->render('homepage/index.html.twig', [
             'posts' => $postFacade->findAllForPublicList(
