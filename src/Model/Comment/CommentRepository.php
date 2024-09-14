@@ -26,7 +26,7 @@ class CommentRepository extends ServiceEntityRepository
 
     /**
      * @param int $postId
-     * @return Comment[] array
+     * @return Comment[]
      */
     public function findByPostIdForPublicList(int $postId): array
     {

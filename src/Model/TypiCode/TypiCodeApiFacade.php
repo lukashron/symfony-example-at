@@ -40,7 +40,7 @@ class TypiCodeApiFacade
     }
 
     /**
-     * @return array
+     * @return UserDto[]
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
     public function makeUsersDtoListFromApi(): array
@@ -60,7 +60,7 @@ class TypiCodeApiFacade
     }
 
     /**
-     * @return array
+     * @return PostDto[]
      * @throws \App\Api\Exception\ApiRequestProcessingException
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
@@ -84,7 +84,7 @@ class TypiCodeApiFacade
     }
 
     /**
-     * @return array
+     * @return CommentDto[]
      * @throws \App\Api\Exception\ApiRequestProcessingException
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface

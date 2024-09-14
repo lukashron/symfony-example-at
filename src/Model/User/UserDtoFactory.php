@@ -20,7 +20,7 @@ class UserDtoFactory
 
     /**
      * @param ResponseInterface $response
-     * @return UserDto[] array
+     * @return UserDto[]
      * @throws \App\Api\Exception\ApiRequestProcessingException
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface

@@ -20,7 +20,7 @@ class PostDtoFactory
 
     /**
      * @param ResponseInterface $response
-     * @return PostDto[] array
+     * @return PostDto[]
      * @throws \App\Api\Exception\ApiRequestProcessingException
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface

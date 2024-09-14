@@ -20,7 +20,7 @@ class CommentDtoFactory
 
     /**
      * @param ResponseInterface $response
-     * @return CommentDto[] array
+     * @return CommentDto[]
      * @throws \App\Api\Exception\ApiRequestProcessingException
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface

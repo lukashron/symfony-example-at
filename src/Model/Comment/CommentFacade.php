@@ -17,7 +17,7 @@ class CommentFacade
 
     /**
      * @param int $postId
-     * @return CommentDto[] array
+     * @return CommentDto[]
      */
     public function findByPostIdForPublicList(int $postId): array
     {
